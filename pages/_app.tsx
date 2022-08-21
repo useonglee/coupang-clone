@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      suspense: true,
       staleTime: 600000, // 10 minutes
       cacheTime: 900000, // 15 minutes
       retry: false,
