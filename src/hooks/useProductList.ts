@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import ProductService from "@service/product.service";
 
-function useProductList(queryString: string) {
+const useProductList = (queryString: string) => {
   const { data: productListData } = useQuery(
     ["product-list", queryString],
     () => ProductService.fetchProductData(queryString),
@@ -12,6 +12,6 @@ function useProductList(queryString: string) {
   );
 
   return productListData;
-}
+};
 
 export default useProductList;
