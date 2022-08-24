@@ -32,7 +32,7 @@ export const DeliveryDateStyle = styled.p<{ isAssured?: boolean }>`
     const { secondary, black } = theme.color;
 
     return css`
-      padding-top: 0.3rem;
+      padding-top: 0.6rem;
       color: ${isAssured ? secondary : black};
       font-size: 1.4rem;
 >>>>>>> 3464d01 (#2 feat: 상품 배송 도착 UI 컴포넌트 구현)
