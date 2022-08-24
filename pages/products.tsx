@@ -1,12 +1,13 @@
 import { CustomSuspense } from "@components/Common";
+import { ProductList } from "@components/Product";
 import useProductList from "@hooks/useProductList";
 
 const ProductListPage = () => {
-  const productListData = useProductList("offset=0&limit=20&sorter=bestAsc");
+  const productListData = useProductList("offset=2&limit=20&sorter=bestAsc");
 
   return (
     <CustomSuspense fallback={<div>Loading...</div>}>
-      상품 목록 페이지입니다.
+      <ProductList productListData={productListData} />
     </CustomSuspense>
   );
 };
