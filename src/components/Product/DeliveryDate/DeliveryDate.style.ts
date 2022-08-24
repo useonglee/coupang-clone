@@ -7,7 +7,7 @@ export const DeliveryDateStyle = styled.p<{ isAssured?: boolean }>`
     const { secondary, black } = theme.color;
 
     return css`
-      padding-top: 0.3rem;
+      padding-top: 0.6rem;
       color: ${isAssured ? secondary : black};
       font-size: 1.4rem;
     `;
