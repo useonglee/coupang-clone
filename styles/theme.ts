@@ -11,6 +11,7 @@ const color = {
   boxShadow: "1px 1px 10px rgba(0, 0, 0, 0.2)",
   black: "#000000",
   black300: "#333333",
+  starRating: '#FF9603'
 };
 
 const theme: DefaultTheme = {
