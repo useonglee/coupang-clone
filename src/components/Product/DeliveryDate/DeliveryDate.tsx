@@ -8,7 +8,7 @@ interface IDeliveryDate {
 
 const DeliveryDate = ({ date, isAssured }: IDeliveryDate) => {
   return (
-    <Style.DeliveryDateStyle>
+    <Style.DeliveryDateStyle isAssured={isAssured}>
       {deliveryDateFormatter(date, isAssured)}
       {isAssured ? " 새벽 도착 보장" : " 도착 예정"}
     </Style.DeliveryDateStyle>
