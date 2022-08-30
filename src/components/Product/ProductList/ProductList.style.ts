@@ -5,4 +5,6 @@ export const ProductListContainer = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  max-width: 120rem;
+  margin: 0 auto;
 `;
