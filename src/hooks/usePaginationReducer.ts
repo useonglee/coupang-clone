@@ -2,7 +2,12 @@ import { useReducer } from "react";
 import { IPaginationState } from "@/types/pagination";
 
 export interface IPaginationAction extends Partial<IPaginationState> {
-  type: "CHANGE_PAGE" | "NEXT_SKIP_PAGE" | "PREV_SKIP_PAGE" | "LIMIT";
+  type:
+    | "CHANGE_PAGE"
+    | "NEXT_SKIP_PAGE"
+    | "PREV_SKIP_PAGE"
+    | "LIMIT"
+    | "START_PAGE";
 }
 
 const reducer = (state: IPaginationState, action: IPaginationAction) => {
@@ -27,6 +32,15 @@ const reducer = (state: IPaginationState, action: IPaginationAction) => {
 
     case "LIMIT":
       newPaginationState.limit = Number(action.limit);
+      return newPaginationState;
+
+    case "START_PAGE":
+      const { offset, startPage } = newPaginationState;
+
+      const currentStartPage = Number(Math.floor(offset / 10) + "1");
+      const result = currentStartPage < 11 ? startPage : currentStartPage;
+
+      newPaginationState.startPage = result;
       return newPaginationState;
 
     default:
