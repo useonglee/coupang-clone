@@ -60,10 +60,15 @@ export const ArrowButton = styled(PageButtonStyle)<{
       margin-right: ${direction === "left" && "0.8rem"};
       margin-left: ${direction === "right" && "0.8rem"};
       color: ${disabled && lightGray};
-      border: 2px solid ${lightGray};
+      border: 1.5px solid ${lightGray};
 
       &:hover {
         color: ${disabled && lightGray};
+      }
+
+      & > svg {
+        height: 100%;
+        font-size: 2.6rem;
       }
     `;
   }}

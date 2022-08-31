@@ -1,9 +1,13 @@
-import { Dispatch, useCallback, useEffect, useMemo, useState } from "react";
+import { Dispatch, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import { IPaginationAction } from "@hooks/usePaginationReducer";
 import useShallowRouter from "@hooks/useShallowRouter";
 import { IPaginationState } from "@/types/pagination";
 import * as Style from "./Pagination.style";
+
+// react-icon
+import { RiArrowDropLeftLine as ArrowLeftIcon } from "react-icons/ri";
+import { RiArrowDropRightLine as ArrowRightIcon } from "react-icons/ri";
 
 interface IPaginationProps {
   isFixed?: boolean;
@@ -27,23 +31,26 @@ const Pagination = ({
       .map((page, index) => page + index);
 
     return pageRangeArray;
-  }, [startPage]);
+  }, [offset, startPage]);
 
   const handlePageClick = (curPage: number) => {
     dispatch({ type: "CHANGE_PAGE", offset: curPage });
+    useShallowRouter(router, { offset: curPage });
   };
 
   const handlePrevPageClick = () => {
     dispatch({ type: "PREV_SKIP_PAGE" });
+    useShallowRouter(router, { offset: startPage - 10 });
   };
 
   const handleNextPageClick = () => {
     dispatch({ type: "NEXT_SKIP_PAGE" });
+    useShallowRouter(router, { offset: startPage + 10 });
   };
 
   useEffect(() => {
-    useShallowRouter(router, { offset });
-  }, [offset]);
+    dispatch({ type: "START_PAGE" });
+  }, [startPage]);
 
   return (
     <Style.PaginationContainer isFixed={isFixed}>
@@ -52,7 +59,7 @@ const Pagination = ({
         direction="left"
         disabled={startPage === 1}
       >
-        &lt;
+        <ArrowLeftIcon />
       </Style.ArrowButton>
       {pages.map((page) => (
         <Style.PaginationButton
@@ -69,7 +76,7 @@ const Pagination = ({
         direction="right"
         disabled={startPage === 31}
       >
-        &gt;
+        <ArrowRightIcon />
       </Style.ArrowButton>
     </Style.PaginationContainer>
   );
