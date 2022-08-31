@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { CustomSuspense, Pagination } from "@components/Common";
+import { Layout, CustomSuspense, Pagination } from "@components/Common";
 import { ProductList } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
-import Layout from "@components/Common/Layout/Layout";
+import { IPaginationState } from "@/types/pagination";
 
 const ProductListPage = () => {
+  const router = useRouter();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [scrollThrottle, setScrollThrottle] = useState<boolean>(false);
 
   const { paginationState, dispatch } = usePaginationReducer();
-  const { offset, limit } = paginationState;
 
   const productListData = useProductList(
-    `offset=${offset}&limit=${limit}&sorter=bestAsc`
+    router.query as unknown as IPaginationState
   );
 
   const handleScrollEventCallback = () => {
