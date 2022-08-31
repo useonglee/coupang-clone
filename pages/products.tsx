@@ -1,14 +1,74 @@
-import { CustomSuspense } from "@components/Common";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { CustomSuspense, Pagination } from "@components/Common";
 import { ProductList } from "@components/Product";
+import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
+import Layout from "@components/Common/Layout/Layout";
 
 const ProductListPage = () => {
-  const productListData = useProductList("offset=2&limit=20&sorter=bestAsc");
+  const [isScrolling, setIsScrolling] = useState<boolean>(false);
+  const [scrollThrottle, setScrollThrottle] = useState<boolean>(false);
+
+  const { paginationState, dispatch } = usePaginationReducer();
+  const { offset, limit } = paginationState;
+
+  const productListData = useProductList(
+    `offset=${offset}&limit=${limit}&sorter=bestAsc`
+  );
+
+  const handleScrollEventCallback = () => {
+    const { scrollY, innerHeight } = window;
+    const scrollHeight = document.documentElement.scrollHeight;
+
+    if (scrollY + innerHeight >= scrollHeight - 169) {
+      setIsScrolling(false);
+      return;
+    }
+
+    setIsScrolling(scrollY > 0);
+  };
+
+  const handleScrollEventThrottle = () => {
+    if (scrollThrottle) return;
+    else {
+      setScrollThrottle(true);
+
+      setTimeout(() => {
+        handleScrollEventCallback();
+        setScrollThrottle(false);
+      }, 200);
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    window.addEventListener("scroll", handleScrollEventThrottle);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollEventThrottle);
+    };
+  }, []);
 
   return (
-    <CustomSuspense fallback={<div>Loading...</div>}>
-      <ProductList productListData={productListData} />
-    </CustomSuspense>
+    <Layout isScrolling={isScrolling}>
+      <CustomSuspense fallback={<div>Loading...</div>}>
+        <ProductList productListData={productListData} />
+        {isScrolling && (
+          <Pagination
+            isFixed={isScrolling}
+            totalElements={productListData?.length}
+            paginationState={paginationState}
+            dispatch={dispatch}
+          />
+        )}
+        <Pagination
+          totalElements={productListData?.length}
+          paginationState={paginationState}
+          dispatch={dispatch}
+        />
+      </CustomSuspense>
+    </Layout>
   );
 };
 
