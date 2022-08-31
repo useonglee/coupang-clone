@@ -10,7 +10,7 @@ interface IProductListProps {
 const ProductList = memo(({ productListData }: IProductListProps) => {
   return (
     <Style.ProductListContainer>
-      {productListData.map((product) => (
+      {productListData?.map((product) => (
         <ProductCard key={product.id} productData={product} />
       ))}
     </Style.ProductListContainer>
