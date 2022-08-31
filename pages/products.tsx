@@ -4,18 +4,17 @@ import { Layout, CustomSuspense, Pagination } from "@components/Common";
 import { ProductList } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
-import { IPaginationState } from "@/types/pagination";
+import createQueryString from "@utils/createQueryString";
 
 const ProductListPage = () => {
   const router = useRouter();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [scrollThrottle, setScrollThrottle] = useState<boolean>(false);
+  const [queryString, setQueryString] = useState<string>("");
 
   const { paginationState, dispatch } = usePaginationReducer();
 
-  const productListData = useProductList(
-    router.query as unknown as IPaginationState
-  );
+  const productListData = useProductList(queryString);
 
   const handleScrollEventCallback = () => {
     const { scrollY, innerHeight } = window;
@@ -42,13 +41,22 @@ const ProductListPage = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     window.addEventListener("scroll", handleScrollEventThrottle);
 
     return () => {
       window.removeEventListener("scroll", handleScrollEventThrottle);
     };
   }, []);
+
+  useEffect(() => {
+    const { offset } = router.query;
+
+    if (offset) {
+      dispatch({ type: "CHANGE_PAGE", offset: Number(offset) || 1 });
+    }
+
+    setQueryString(createQueryString(router.query));
+  }, [router, queryString]);
 
   return (
     <Layout isScrolling={isScrolling}>
