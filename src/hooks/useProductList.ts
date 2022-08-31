@@ -1,14 +1,16 @@
 import { useQuery } from "react-query";
 import ProductService from "@service/product.service";
+import createQueryString from "@utils/createQueryString";
 import { IProductList } from "@/types/products";
+import { IPaginationState } from "@/types/pagination";
 
-const useProductList = (queryString: string): IProductList => {
+const useProductList = (queries: IPaginationState): IProductList => {
   const { data: productListData } = useQuery(
-    ["product-list", queryString],
-    () => ProductService.fetchProductData(queryString),
+    ["product-list", createQueryString(queries)],
+    () => ProductService.fetchProductData(createQueryString(queries)),
     {
       keepPreviousData: true,
-      enabled: !!queryString,
+      enabled: !!createQueryString(queries),
     }
   );
 
