@@ -7,7 +7,8 @@ export interface IPaginationAction extends Partial<IPaginationState> {
     | "NEXT_SKIP_PAGE"
     | "PREV_SKIP_PAGE"
     | "LIMIT"
-    | "START_PAGE";
+    | "START_PAGE"
+    | "SORTER";
 }
 
 const reducer = (state: IPaginationState, action: IPaginationAction) => {
@@ -43,6 +44,10 @@ const reducer = (state: IPaginationState, action: IPaginationAction) => {
       newPaginationState.startPage = result;
       return newPaginationState;
 
+    case "SORTER":
+      newPaginationState.sorter = String(action.sorter);
+      return newPaginationState;
+
     default:
       return state;
   }
@@ -53,6 +58,7 @@ const usePaginationReducer = () => {
     startPage: 1,
     offset: 1,
     limit: 12,
+    sorter: "bestAsc",
   };
 
   const [paginationState, dispatch] = useReducer(reducer, paginationInitState);
