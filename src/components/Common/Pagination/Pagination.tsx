@@ -6,8 +6,10 @@ import { IPaginationState } from "@/types/pagination";
 import * as Style from "./Pagination.style";
 
 // react-icon
-import { RiArrowDropLeftLine as ArrowLeftIcon } from "react-icons/ri";
-import { RiArrowDropRightLine as ArrowRightIcon } from "react-icons/ri";
+import {
+  RiArrowDropLeftLine as ArrowLeftIcon,
+  RiArrowDropRightLine as ArrowRightIcon,
+} from "react-icons/ri";
 
 interface IPaginationProps {
   isFixed?: boolean;
