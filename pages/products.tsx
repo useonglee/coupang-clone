@@ -5,6 +5,9 @@ import { ProductList, SearchSortingBar } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
 import createQueryString from "@utils/createQueryString";
+import { BeatLoader } from "react-spinners";
+import theme from "@styles/theme";
+import { SpinnerContainer } from "@components/Common/CustomSuspense/CustomSuspense.style";
 
 const ProductListPage = () => {
   const router = useRouter();
@@ -49,19 +52,27 @@ const ProductListPage = () => {
   }, []);
 
   useEffect(() => {
-    const { offset } = router.query;
+    const { offset, limit, sorter } = router.query;
 
-    if (offset) {
+    if (offset || limit || sorter) {
       dispatch({ type: "CHANGE_PAGE", offset: Number(offset) || 1 });
+      dispatch({ type: "LIMIT", limit: Number(limit) || 12 });
+      dispatch({ type: "SORTER", sorter: (sorter as string) || "bestAsc" });
     }
 
     setQueryString(createQueryString(router.query));
-  }, [router, queryString]);
+  }, [router]);
 
   return (
     <Layout isScrolling={isScrolling}>
-      <SearchSortingBar limit={paginationState.limit} dispatch={dispatch} />
-      <CustomSuspense fallback={<div>Loading...</div>}>
+      <SearchSortingBar paginationState={paginationState} dispatch={dispatch} />
+      <CustomSuspense
+        fallback={
+          <SpinnerContainer>
+            <BeatLoader color={theme.color.primary} />
+          </SpinnerContainer>
+        }
+      >
         <ProductList productListData={productListData} />
         {isScrolling && (
           <Pagination
