@@ -6,8 +6,9 @@ import { IPaginationState } from "@/types/pagination";
 const createQueryString = ({
   offset = 1,
   limit = 12,
+  sorter = "bestAsc",
 }: Partial<IPaginationState>) => {
-  return `offset=${offset}&limit=${limit}&sorter=bestAsc`;
+  return `offset=${offset}&limit=${limit}&sorter=${sorter}`;
 };
 
 export default createQueryString;
