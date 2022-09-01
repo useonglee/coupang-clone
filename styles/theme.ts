@@ -24,6 +24,7 @@ const color = {
   emphasis: "#E52528",
   grayCC: "#CCCCCC",
   grayFA: "#FAFAFA",
+  grayEE: "#EEEEEE",
   lightGray: "#DDDDDD",
   basicGray: "#555555",
   darkGray: "#888888",
