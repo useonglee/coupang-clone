@@ -12,6 +12,15 @@ const nextConfig = {
       "image8.coupangcdn.com",
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/products",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
