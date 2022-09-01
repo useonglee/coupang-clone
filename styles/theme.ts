@@ -5,6 +5,7 @@ const color = {
   secondary: "#00891A",
   grayCC: "#CCCCCC",
   grayFA: "#FAFAFA",
+  grayEE: "#EEEEEE",
   lightGray: "#DDDDDD",
   basicGray: "#555555",
   darkGray: "#888888",
