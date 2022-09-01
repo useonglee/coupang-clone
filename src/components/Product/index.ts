@@ -4,3 +4,4 @@ export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as ProductList } from "./ProductList/ProductList";
 export { default as ProductPrice } from "./ProductPrice/ProductPrice";
 export { default as ProductRating } from "./ProductRating/ProductRating";
+export { default as SearchSortingBar } from "./SearchSortingBar/SearchSortingBar";

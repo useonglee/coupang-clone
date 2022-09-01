@@ -6,6 +6,7 @@ declare module "@emotion/react" {
       primary: string;
       secondary: string;
       grayCC: string;
+      grayFA: string;
       lightGray: string;
       basicGray: string;
       darkGray: string;
@@ -14,6 +15,7 @@ declare module "@emotion/react" {
       black: string;
       black300: string;
       starRating: string;
+      white: string;
     };
   }
 }
