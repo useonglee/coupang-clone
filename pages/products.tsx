@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Layout, CustomSuspense, Pagination } from "@components/Common";
-import { ProductList } from "@components/Product";
+import { ProductList, SearchSortingBar } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
 import createQueryString from "@utils/createQueryString";
@@ -60,6 +60,7 @@ const ProductListPage = () => {
 
   return (
     <Layout isScrolling={isScrolling}>
+      <SearchSortingBar limit={paginationState.limit} dispatch={dispatch} />
       <CustomSuspense fallback={<div>Loading...</div>}>
         <ProductList productListData={productListData} />
         {isScrolling && (
