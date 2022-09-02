@@ -10,7 +10,7 @@ export const SortingOptionContainer = styled.ul`
   display: flex;
   align-items: center;
 
-  & > li:not(:nth-last-child(1)) {
+  & > li:not(:nth-last-of-type(1)) {
     border-right: 1px solid ${theme.color.grayEE};
   }
 `;
