@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Layout, CustomSuspense, Pagination } from "@components/Common";
+import {
+  Layout,
+  CustomSuspense,
+  Pagination,
+  Spinner,
+} from "@components/Common";
 import { ProductList, SearchSortingBar } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
 import createQueryString from "@utils/createQueryString";
-import { BeatLoader } from "react-spinners";
-import theme from "@styles/theme";
-import { SpinnerContainer } from "@components/Common/CustomSuspense/CustomSuspense.style";
 
 const ProductListPage = () => {
   const router = useRouter();
@@ -66,13 +68,7 @@ const ProductListPage = () => {
   return (
     <Layout isScrolling={isScrolling}>
       <SearchSortingBar paginationState={paginationState} dispatch={dispatch} />
-      <CustomSuspense
-        fallback={
-          <SpinnerContainer>
-            <BeatLoader color={theme.color.primary} />
-          </SpinnerContainer>
-        }
-      >
+      <CustomSuspense fallback={<Spinner />}>
         <ProductList productListData={productListData} />
         {isScrolling && (
           <Pagination
