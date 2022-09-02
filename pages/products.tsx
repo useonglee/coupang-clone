@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import {
   Layout,
@@ -10,14 +11,21 @@ import { ProductList, SearchSortingBar } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
 import createQueryString from "@utils/createQueryString";
+import { IPaginationState } from "@/types/pagination";
 
-const ProductListPage = () => {
+interface IProductListPageProps {
+  queries: IPaginationState;
+}
+
+const ProductListPage = ({ queries }: IProductListPageProps) => {
+  const { offset, limit, sorter } = queries;
   const router = useRouter();
+
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [scrollThrottle, setScrollThrottle] = useState<boolean>(false);
   const [queryString, setQueryString] = useState<string>("");
 
-  const { paginationState, dispatch } = usePaginationReducer();
+  const { paginationState, dispatch } = usePaginationReducer(queries);
 
   const productListData = useProductList(queryString);
 
@@ -54,8 +62,6 @@ const ProductListPage = () => {
   }, []);
 
   useEffect(() => {
-    const { offset, limit, sorter } = router.query;
-
     if (offset || limit || sorter) {
       dispatch({ type: "CHANGE_PAGE", offset: Number(offset) || 1 });
       dispatch({ type: "LIMIT", limit: Number(limit) || 12 });
@@ -63,7 +69,7 @@ const ProductListPage = () => {
     }
 
     setQueryString(createQueryString(router.query));
-  }, [router]);
+  }, [dispatch]);
 
   return (
     <Layout isScrolling={isScrolling}>
@@ -89,3 +95,12 @@ const ProductListPage = () => {
 };
 
 export default ProductListPage;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { offset, limit, sorter } = context.query;
+  const queries = JSON.parse(JSON.stringify({ offset, limit, sorter }));
+
+  return {
+    props: { queries },
+  };
+};
