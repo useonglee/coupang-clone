@@ -53,12 +53,12 @@ const reducer = (state: IPaginationState, action: IPaginationAction) => {
   }
 };
 
-const usePaginationReducer = () => {
+const usePaginationReducer = ({ offset, limit, sorter }: IPaginationState) => {
   const paginationInitState = {
     startPage: 1,
-    offset: 1,
-    limit: 12,
-    sorter: "bestAsc",
+    offset: offset || 1,
+    limit: limit || 12,
+    sorter: sorter || "bestAsc",
   };
 
   const [paginationState, dispatch] = useReducer(reducer, paginationInitState);
