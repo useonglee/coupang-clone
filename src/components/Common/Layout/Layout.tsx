@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { PropsWithChildren } from "react";
 import * as Style from "./Layout.style";
 
@@ -7,9 +8,14 @@ interface ILayoutProps {
 
 const Layout = ({ isScrolling, children }: PropsWithChildren<ILayoutProps>) => {
   return (
-    <Style.LayoutContainer isScrolling={isScrolling}>
-      {children}
-    </Style.LayoutContainer>
+    <>
+      <Head>
+        <title>쿠팡!</title>
+      </Head>
+      <Style.LayoutContainer isScrolling={isScrolling}>
+        {children}
+      </Style.LayoutContainer>
+    </>
   );
 };
 
