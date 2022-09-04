@@ -69,7 +69,7 @@ const ProductListPage = ({ queries }: IProductListPageProps) => {
     }
 
     setQueryString(createQueryString(router.query));
-  }, [dispatch]);
+  }, [dispatch, router]);
 
   return (
     <Layout isScrolling={isScrolling}>
