@@ -1,4 +1,4 @@
-import { DefaultTheme, Theme } from "@emotion/react";
+import { Theme } from "@emotion/react";
 
 const color = {
   primary: "#0073E9",
@@ -8,6 +8,8 @@ const color = {
     "55": "#555555",
     "8A": "#8A8A8A",
     "88": "#888888",
+    DD: "#DDDDDD",
+    FA: "#FAFAFA",
   },
   background: {
     dark: "rgb(138, 138, 138)",
@@ -16,7 +18,7 @@ const color = {
   emphasis: "#E52528",
 };
 
-const theme: DefaultTheme = {
+const theme: Theme = {
   color,
 };
 
