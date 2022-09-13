@@ -42,6 +42,7 @@ const CartTable = () => {
         {cartItemListData?.map(({ id, product }, index) => (
           <CartItem
             key={id}
+            cartId={product.id}
             deliveryDate={product.expectedDeliveryDate}
             isAssured={product.isAssured}
             imageUrl={product.imageUrl}
