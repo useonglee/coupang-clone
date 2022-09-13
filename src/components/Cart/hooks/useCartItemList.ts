@@ -9,6 +9,18 @@ const useCartItemList = (): ICartItemListData[] => {
     () => CartService.fetchCartList(),
     {
       enabled: !!cookies.get("accessToken"),
+      select: (data) => {
+        const processProductPrice = data.map((product: ICartItemListData) => {
+          const { salePrice, maxPoint } = product.product;
+
+          product.product.salePrice = salePrice.toLocaleString();
+          product.product.maxPoint = maxPoint.toLocaleString();
+
+          return product;
+        });
+
+        return processProductPrice;
+      },
     }
   );
 
