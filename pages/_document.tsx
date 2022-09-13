@@ -29,7 +29,7 @@ class MyDocument extends Document {
     return {
       ...initialProps,
       styles: [
-        <Fragment>
+        <Fragment key={`css ${ids.join(" ")}`}>
           {initialProps.styles}
           <style
             data-emotion={`css ${ids.join(" ")}`}
