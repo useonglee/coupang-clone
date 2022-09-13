@@ -63,10 +63,29 @@ export const OptionPricePart = styled.div`
       color: ${gray["88"]};
       font-size: 1.2rem;
 
-      & > span:nth-last-of-type(1) {
+      & > span:nth-of-type(2) {
         display: inline-block;
         width: 7rem;
+        margin-right: 0.5rem;
         text-align: right;
+      }
+    `;
+  }}
+`;
+
+export const CartItemDeleteButton = styled.button`
+  ${({ theme }) => {
+    const { gray } = theme.color;
+
+    return css`
+      width: 1.8rem;
+      height: 1.8rem;
+      margin-bottom: 0.2rem;
+      border: 1px solid ${gray["88"]};
+
+      & > svg {
+        height: 1.6rem;
+        color: ${gray["88"]};
       }
     `;
   }}
