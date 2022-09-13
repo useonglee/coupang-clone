@@ -103,6 +103,7 @@ const globalStyle = css`
     padding: 0;
     border: 0;
     vertical-align: baseline;
+    font-family: Dotum, sans-serif;
   }
   /* HTML5 display-role reset for older browsers */
   article,
