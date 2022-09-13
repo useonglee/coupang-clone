@@ -6,6 +6,12 @@ class CartService {
 
     return data;
   }
+
+  async fetchDeleteCartItem(cartId: number) {
+    const { data } = await axiosInstance.delete(`/cart-items/${cartId}`);
+
+    return data;
+  }
 }
 
 export default new CartService();
