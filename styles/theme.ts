@@ -2,13 +2,17 @@ import { Theme } from "@emotion/react";
 
 const color = {
   primary: "#0073E9",
+  secondary: "#00891A",
   black: "#111111",
   white: "#FFFFFF",
   gray: {
+    "33": "#333333",
     "55": "#555555",
     "8A": "#8A8A8A",
     "88": "#888888",
+    CC: "#CCCCCC",
     DD: "#DDDDDD",
+    E5: "#E5E5E7",
     FA: "#FAFAFA",
   },
   background: {
