@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { CartItemList } from "@components/Cart";
 import useCartItemList from "@components/Cart/hooks/useCartItemList";
 import * as Style from "./CartTable.style";
 
