@@ -6,7 +6,6 @@ export const DeliveryDateStyle = styled.p<{ isAssured?: boolean }>`
     const { secondary, black } = theme.color;
 
     return css`
-      padding-top: 1rem;
       color: ${isAssured ? secondary : black};
       line-height: 1.5rem;
       letter-spacing: -0.5px;
