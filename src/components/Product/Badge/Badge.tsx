@@ -2,7 +2,7 @@ import Image from "next/image";
 import * as Style from "./Badge.style";
 
 interface IBadgeProps {
-  maxPoint: number;
+  maxPoint: string;
 }
 
 const Badge = ({ maxPoint }: IBadgeProps) => {

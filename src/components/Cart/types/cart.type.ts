@@ -13,13 +13,13 @@ export interface ICartItemData {
   isMdRecommended: boolean;
   isRecommended: boolean;
   isSoldout: boolean;
-  maxPoint: number;
+  maxPoint: string;
   name: string;
   originalPrice: number;
   rating: number;
   reviewCount: number;
   rocketType: string | null;
-  salePrice: number;
+  salePrice: string;
   shippinFee: number;
   weight: number;
   wowPrice: number;

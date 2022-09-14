@@ -1,20 +1,23 @@
-import { DeliveryDate } from "@components/Product";
-import Badge from "@components/Product/Badge/Badge";
 import Image from "next/image";
+import { DeliveryDate, Badge } from "@components/Product";
+import useDeleteCartItem from "../hooks/useDeleteCartItem";
 import * as Style from "./CartItem.style";
+import { VscChromeClose } from "react-icons/vsc";
 
 interface ICartItemProps {
+  cartId: number;
   deliveryDate: string;
   isAssured: boolean;
   imageUrl: string;
   title: string;
-  price: number;
+  price: string;
   rocketType: string | null;
-  maxPoint: number;
+  maxPoint: string;
   isFirstItem: boolean;
 }
 
 const CartItem = ({
+  cartId,
   deliveryDate,
   isAssured,
   imageUrl,
@@ -24,6 +27,12 @@ const CartItem = ({
   maxPoint,
   isFirstItem,
 }: ICartItemProps) => {
+  const deleteCartItem = useDeleteCartItem();
+
+  const handleDeleteCartItemClick = (cartId: number) => {
+    deleteCartItem(cartId);
+  };
+
   return (
     <Style.CartItemContainer>
       <td>체크박스</td>
@@ -42,6 +51,12 @@ const CartItem = ({
             <Style.OptionPricePart>
               <span>{price}원</span>
               <span>{price}원</span>
+              <Style.CartItemDeleteButton
+                type="button"
+                onClick={() => handleDeleteCartItemClick(cartId)}
+              >
+                <VscChromeClose />
+              </Style.CartItemDeleteButton>
             </Style.OptionPricePart>
           </div>
           <Badge maxPoint={maxPoint} />
@@ -49,12 +64,14 @@ const CartItem = ({
       </Style.CartItemInfoWrapper>
       <Style.CartItemTotalPrice>
         <p>{price}원</p>
-        <Image
-          src="https://img1a.coupangcdn.com/image/cmg/icon/ios/logo_rocket_large@3x.png"
-          alt="로켓배송 상품"
-          width={56}
-          height={14}
-        />
+        {rocketType === "fresh" && (
+          <Image
+            src="https://img1a.coupangcdn.com/image/cmg/icon/ios/logo_rocket_large@3x.png"
+            alt="로켓배송 상품"
+            width={56}
+            height={14}
+          />
+        )}
       </Style.CartItemTotalPrice>
       {isFirstItem && (
         <Style.CartItemDeliveryFree rowSpan={5}>
