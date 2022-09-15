@@ -19,15 +19,19 @@ const useCartItemList = (): IUseCartItemList => {
     ({ signal }) => CartService.fetchCartList(signal),
     {
       enabled: !!cookies.get("accessToken"),
-      onSuccess: (data) => {
-        const processProductPrice = data.map((product: ICartItemListData) => {
+      select: (data) => {
+        const newCartItem: ICartItemListData[] = [];
+
+        data.map((product: ICartItemListData) => {
           const { salePrice, maxPoint } = product.product;
 
           product.product.salePrice = salePrice.toLocaleString();
           product.product.maxPoint = maxPoint.toLocaleString();
+
+          newCartItem.push(product);
         });
 
-        return processProductPrice;
+        return newCartItem;
       },
     }
   );
@@ -41,7 +45,7 @@ const useCartItemList = (): IUseCartItemList => {
     if (data.length > 0) {
       setCartItemList(data);
     }
-  }, [data, cartItemList]);
+  }, [data]);
 
   return { cartItemList, updateCartItemList };
 };

@@ -13,6 +13,7 @@ const color = {
     CC: "#CCCCCC",
     DD: "#DDDDDD",
     E5: "#E5E5E7",
+    E7: "#F7F7F7",
     FA: "#FAFAFA",
   },
   background: {
