@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { DeliveryDate, Badge } from "@components/Product";
+import QuantityModifier from "../QuantityModifier/QuantityModifier";
 import useDeleteCartItem from "../hooks/useDeleteCartItem";
 import * as Style from "./CartItem.style";
 import { VscChromeClose } from "react-icons/vsc";
@@ -13,6 +14,7 @@ interface ICartItemProps {
   price: string;
   rocketType: string | null;
   maxPoint: string;
+  quantity: number;
   isFirstItem: boolean;
 }
 
@@ -25,6 +27,7 @@ const CartItem = ({
   price,
   rocketType,
   maxPoint,
+  quantity,
   isFirstItem,
 }: ICartItemProps) => {
   const deleteCartItem = useDeleteCartItem();
@@ -50,6 +53,7 @@ const CartItem = ({
             <DeliveryDate date={deliveryDate} isAssured={isAssured} />
             <Style.OptionPricePart>
               <span>{price}원</span>
+              <QuantityModifier cartId={cartId} cartQuantity={quantity} />
               <span>{price}원</span>
               <Style.CartItemDeleteButton
                 type="button"

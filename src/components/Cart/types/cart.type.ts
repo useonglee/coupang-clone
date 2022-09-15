@@ -24,3 +24,8 @@ export interface ICartItemData {
   weight: number;
   wowPrice: number;
 }
+
+export interface IUpdateCartItemRequestBody {
+  cartId: number;
+  cartQuantity: number;
+}

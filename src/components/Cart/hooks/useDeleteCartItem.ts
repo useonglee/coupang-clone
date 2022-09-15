@@ -1,9 +1,16 @@
 import cartService from "@services/cart.service";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 const useDeleteCartItem = () => {
-  const { mutate: deleteCartItem } = useMutation((cartId: number) =>
-    cartService.fetchDeleteCartItem(cartId)
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteCartItem } = useMutation(
+    (cartId: number) => cartService.fetchDeleteCartItem(cartId),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["cart-list"]);
+      },
+    }
   );
 
   return deleteCartItem;
