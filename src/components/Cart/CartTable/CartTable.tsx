@@ -8,7 +8,6 @@ const CartItem = dynamic(() => import("../CartItem/CartItem"), {
 
 const CartTable = () => {
   const cartItemListData = useCartItemList();
-  console.log(cartItemListData);
 
   return (
     <Style.CartTableContainer>
@@ -39,7 +38,7 @@ const CartTable = () => {
             </Style.RocketDeliveryInfo>
           </Style.CartBundleTitle>
         </tr>
-        {cartItemListData?.map(({ id, product }, index) => (
+        {cartItemListData?.map(({ id, product, quantity }, index) => (
           <CartItem
             key={id}
             cartId={product.id}
@@ -50,6 +49,7 @@ const CartTable = () => {
             price={product.salePrice}
             rocketType={product.rocketType}
             maxPoint={product.maxPoint}
+            quantity={quantity}
             isFirstItem={index === 0}
           />
         ))}
