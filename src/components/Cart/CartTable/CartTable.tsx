@@ -1,13 +1,26 @@
-import dynamic from "next/dynamic";
-import useCartItemList from "@components/Cart/hooks/useCartItemList";
+import { useMemo } from "react";
+import { RocketProduct, SellerProduct } from "@components/Cart";
+import useCartItemList from "../hooks/useCartItemList";
 import * as Style from "./CartTable.style";
-
-const CartItem = dynamic(() => import("../CartItem/CartItem"), {
-  ssr: false,
-});
+import { ICartItemListData } from "../types/cart.type";
 
 const CartTable = () => {
   const { cartItemList } = useCartItemList();
+
+  const cart = useMemo(() => {
+    const rocketProductList: ICartItemListData[] = [];
+    const sellerProductList: ICartItemListData[] = [];
+
+    cartItemList.map((cartItem) => {
+      if (cartItem.product.rocketType === "fresh") {
+        rocketProductList.push(cartItem);
+      } else {
+        sellerProductList.push(cartItem);
+      }
+    });
+
+    return { rocketProductList, sellerProductList };
+  }, [cartItemList]);
 
   return (
     <Style.CartTableContainer>
@@ -29,31 +42,8 @@ const CartTable = () => {
           <th scope="col">배송비</th>
         </Style.CartTableHeaderRow>
       </thead>
-      <tbody>
-        <tr>
-          <Style.CartBundleTitle colSpan={5}>
-            <h2>로켓배송 상품</h2>
-            <Style.RocketDeliveryInfo>
-              무료 배송 <span>(19,800원 이상 구매가능)</span>
-            </Style.RocketDeliveryInfo>
-          </Style.CartBundleTitle>
-        </tr>
-        {cartItemList?.map(({ id, product, quantity }, index) => (
-          <CartItem
-            key={id}
-            cartId={id}
-            deliveryDate={product.expectedDeliveryDate}
-            isAssured={product.isAssured}
-            imageUrl={product.imageUrl}
-            title={product.name}
-            price={product.salePrice}
-            rocketType={product.rocketType}
-            maxPoint={product.maxPoint}
-            quantity={quantity}
-            isFirstItem={index === 0}
-          />
-        ))}
-      </tbody>
+      <RocketProduct cartItemList={cart.rocketProductList} />
+      <SellerProduct cartItemList={cart.sellerProductList} />
     </Style.CartTableContainer>
   );
 };
