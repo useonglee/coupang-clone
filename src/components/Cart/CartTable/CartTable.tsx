@@ -7,7 +7,7 @@ const CartItem = dynamic(() => import("../CartItem/CartItem"), {
 });
 
 const CartTable = () => {
-  const cartItemListData = useCartItemList();
+  const { cartItemList } = useCartItemList();
 
   return (
     <Style.CartTableContainer>
@@ -38,10 +38,10 @@ const CartTable = () => {
             </Style.RocketDeliveryInfo>
           </Style.CartBundleTitle>
         </tr>
-        {cartItemListData?.map(({ id, product, quantity }, index) => (
+        {cartItemList?.map(({ id, product, quantity }, index) => (
           <CartItem
             key={id}
-            cartId={product.id}
+            cartId={id}
             deliveryDate={product.expectedDeliveryDate}
             isAssured={product.isAssured}
             imageUrl={product.imageUrl}
