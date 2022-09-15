@@ -5,7 +5,7 @@ import cookies from "js-cookie";
 
 const useCartItemList = (): ICartItemListData[] => {
   const { data: cartItemListData } = useQuery(
-    ["cart-list", "test"],
+    ["cart-list"],
     () => CartService.fetchCartList(),
     {
       enabled: !!cookies.get("accessToken"),
