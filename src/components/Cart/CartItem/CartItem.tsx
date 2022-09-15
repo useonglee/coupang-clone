@@ -15,6 +15,7 @@ interface ICartItemProps {
   rocketType: string | null;
   maxPoint: string;
   quantity: number;
+  count: number;
   isFirstItem: boolean;
 }
 
@@ -28,6 +29,7 @@ const CartItem = ({
   rocketType,
   maxPoint,
   quantity,
+  count,
   isFirstItem,
 }: ICartItemProps) => {
   const deleteCartItem = useDeleteCartItem();
@@ -41,7 +43,12 @@ const CartItem = ({
       <td>체크박스</td>
       <td>
         <Style.CartItemImageWrapper>
-          <Image src={imageUrl} alt="" width={78} height={78} />
+          <Image
+            src={imageUrl}
+            alt={`${title} 상품 이미지`}
+            width={78}
+            height={78}
+          />
         </Style.CartItemImageWrapper>
       </td>
       <Style.CartItemInfoWrapper>
@@ -78,7 +85,7 @@ const CartItem = ({
         )}
       </Style.CartItemTotalPrice>
       {isFirstItem && (
-        <Style.CartItemDeliveryFree rowSpan={5}>
+        <Style.CartItemDeliveryFree rowSpan={count}>
           <p>무료</p>
         </Style.CartItemDeliveryFree>
       )}
