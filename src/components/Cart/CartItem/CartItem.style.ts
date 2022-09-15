@@ -63,7 +63,7 @@ export const OptionPricePart = styled.div`
       color: ${gray["88"]};
       font-size: 1.2rem;
 
-      & > span:nth-of-type(2) {
+      & > span:nth-of-type(3) {
         display: inline-block;
         width: 7rem;
         margin-right: 0.5rem;
