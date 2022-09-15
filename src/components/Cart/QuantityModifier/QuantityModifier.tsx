@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import useUpdateCartItem from "../hooks/useUpdateCartItem";
 import * as Style from "./QuantityModifier.style";
 import { HiOutlinePlus, HiOutlineMinus } from "react-icons/hi";
@@ -10,23 +10,19 @@ interface IQuantityModifierProps {
 }
 
 const QuantityModifier = ({ cartId, cartQuantity }: IQuantityModifierProps) => {
-  const [productQuantity, setProductQuantity] = useState<number>(cartQuantity);
-
   const updateCartItem = useUpdateCartItem();
   const DEBOUNCE_WAIT = 200;
 
   const handleDecreaseModifierDebounce = useDebounce(() => {
-    if (productQuantity === 0) {
+    if (cartQuantity === 0) {
       return;
     }
 
-    setProductQuantity((prev) => prev - 1);
-    updateCartItem({ cartId, cartQuantity: productQuantity - 1 });
+    updateCartItem({ cartId, cartQuantity: cartQuantity - 1 });
   }, DEBOUNCE_WAIT);
 
   const handleIncreaseModifierDebounce = useDebounce(() => {
-    setProductQuantity((prev) => prev + 1);
-    updateCartItem({ cartId, cartQuantity: productQuantity + 1 });
+    updateCartItem({ cartId, cartQuantity: cartQuantity + 1 });
   }, DEBOUNCE_WAIT);
 
   return (
@@ -37,7 +33,7 @@ const QuantityModifier = ({ cartId, cartQuantity }: IQuantityModifierProps) => {
       >
         <HiOutlineMinus />
       </Style.ModifiedButton>
-      <Style.ContentArea>{productQuantity}</Style.ContentArea>
+      <Style.ContentArea>{cartQuantity}</Style.ContentArea>
       <Style.ModifiedButton
         type="button"
         onClick={handleIncreaseModifierDebounce}
