@@ -1,8 +1,9 @@
 import axiosInstance from "@api/axiosInstance";
+import { ICartItemListData } from "@components/Cart/types/cart.type";
 
 class CartService {
-  async fetchCartList() {
-    const { data } = await axiosInstance.get("/cart");
+  async fetchCartList(signal?: AbortSignal): Promise<ICartItemListData[]> {
+    const { data } = await axiosInstance.get("/cart", { signal });
 
     return data;
   }
