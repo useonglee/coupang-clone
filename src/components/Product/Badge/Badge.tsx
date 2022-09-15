@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import * as Style from "./Badge.style";
 
@@ -19,4 +20,4 @@ const Badge = ({ maxPoint }: IBadgeProps) => {
   );
 };
 
-export default Badge;
+export default memo(Badge);

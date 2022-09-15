@@ -1,3 +1,4 @@
+import { memo } from "react";
 import deliveryDateFormatter from "@utils/deliveryDateFormatter";
 import * as Style from "./DeliveryDate.style";
 
@@ -18,4 +19,4 @@ const DeliveryDate = ({ date, isAssured }: IDeliveryDate) => {
   );
 };
 
-export default DeliveryDate;
+export default memo(DeliveryDate);
