@@ -15,6 +15,7 @@ declare module "@emotion/react" {
         CC: string;
         DD: string;
         E5: string;
+        E7: string;
         FA: string;
       };
       background: {
