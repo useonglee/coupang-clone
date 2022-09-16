@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { ICartItemListData } from "../types/cart.type";
 
-const useBundlePrice = (cartItemList: ICartItemListData[]): string => {
+const useBundlePrice = (cartItemList: ICartItemListData[]): number => {
   const INIT_PRICE = 0;
 
   const cartItemTotalPrice = useMemo(() => {
@@ -11,9 +11,9 @@ const useBundlePrice = (cartItemList: ICartItemListData[]): string => {
 
         return product.wowPrice;
       })
-      .reduce((total, itemTotalPrice) => total + itemTotalPrice, INIT_PRICE);
+      .reduce((acc, productPrice) => acc + productPrice, INIT_PRICE);
 
-    return totalPrice.toLocaleString();
+    return totalPrice;
   }, [cartItemList]);
 
   return cartItemTotalPrice;
