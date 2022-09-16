@@ -13,6 +13,7 @@ declare module "@emotion/react" {
         "8A": string;
         "88": string;
         CC: string;
+        C8: string;
         DD: string;
         E5: string;
         E7: string;

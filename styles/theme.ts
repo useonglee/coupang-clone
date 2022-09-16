@@ -11,6 +11,7 @@ const color = {
     "8A": "#8A8A8A",
     "88": "#888888",
     CC: "#CCCCCC",
+    C8: "#C8C8C8",
     DD: "#DDDDDD",
     E5: "#E5E5E7",
     E7: "#F7F7F7",

@@ -1,8 +1,11 @@
+import { memo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import BundlePrice from "../BundlePrice/BundlePrice";
 import useBundlePrice from "../hooks/useBundlePrice";
 import { ICartItemListData } from "../types/cart.type";
 import * as Style from "../CartTable/CartTable.style";
+import { useSetRecoilState } from "recoil";
+import { sellerPriceAtom } from "../recoil/totalPrice";
 
 const CartItem = dynamic(() => import("../CartItem/CartItem"), {
   ssr: false,
@@ -14,6 +17,11 @@ interface ISellerProductProps {
 
 const SellerProduct = ({ cartItemList }: ISellerProductProps) => {
   const sellerCartItemTotalPrice = useBundlePrice(cartItemList);
+  const setSellerTotalPrice = useSetRecoilState(sellerPriceAtom);
+
+  useEffect(() => {
+    setSellerTotalPrice(sellerCartItemTotalPrice);
+  }, [sellerCartItemTotalPrice, setSellerTotalPrice]);
 
   if (cartItemList.length === 0) {
     return <></>;
@@ -47,4 +55,4 @@ const SellerProduct = ({ cartItemList }: ISellerProductProps) => {
   );
 };
 
-export default SellerProduct;
+export default memo(SellerProduct);

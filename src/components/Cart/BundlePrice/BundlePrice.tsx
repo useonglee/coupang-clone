@@ -2,7 +2,7 @@ import { memo } from "react";
 import * as Style from "./BundlePrice.style";
 
 interface IBundlePrice {
-  totalPrice: string;
+  totalPrice: number;
   isRocket?: boolean;
 }
 
@@ -20,7 +20,10 @@ const BundlePrice = ({ totalPrice, isRocket }: IBundlePrice) => {
         <Style.ProductTotalPriceArea>
           <span>
             상품가격
-            <Style.ProductTotalPrice>{totalPrice}</Style.ProductTotalPrice>원
+            <Style.ProductTotalPrice>
+              {totalPrice.toLocaleString()}
+            </Style.ProductTotalPrice>
+            원
           </span>
           <Style.PlusIcon />
           <span>
@@ -35,7 +38,10 @@ const BundlePrice = ({ totalPrice, isRocket }: IBundlePrice) => {
           <Style.EqualIcon />
           <span>
             주문금액
-            <Style.TotalOrderPrice>{totalPrice}</Style.TotalOrderPrice>원
+            <Style.TotalOrderPrice>
+              {totalPrice.toLocaleString()}
+            </Style.TotalOrderPrice>
+            원
           </span>
         </Style.ProductTotalPriceArea>
       </Style.BundlePriceTotalTd>

@@ -4,6 +4,8 @@ import BundlePrice from "../BundlePrice/BundlePrice";
 import useBundlePrice from "../hooks/useBundlePrice";
 import { ICartItemListData } from "../types/cart.type";
 import * as Style from "../CartTable/CartTable.style";
+import { useSetRecoilState } from "recoil";
+import { rocketPriceAtom } from "../recoil/totalPrice";
 
 const CartItem = dynamic(() => import("../CartItem/CartItem"), {
   ssr: false,
@@ -15,6 +17,11 @@ interface IRocketProductProps {
 
 const RocketProduct = ({ cartItemList }: IRocketProductProps) => {
   const rocketCartItemTotalPrice = useBundlePrice(cartItemList);
+  const setRocketTotalPrice = useSetRecoilState(rocketPriceAtom);
+
+  useEffect(() => {
+    setRocketTotalPrice(rocketCartItemTotalPrice);
+  }, [rocketCartItemTotalPrice, setRocketTotalPrice]);
 
   if (cartItemList.length === 0) {
     return <></>;
