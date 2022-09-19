@@ -3,12 +3,21 @@ import { useMutation, useQueryClient } from "react-query";
 import queryKey from "../constants/queryKey";
 import { ICartItemListData } from "../types/cart.type";
 import useCartItemList from "./useCartItemList";
+import { useSetRecoilState } from "recoil";
+import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
 
-const useDeleteCartItem = () => {
+interface IUseDeleteCartItem {
+  deleteCartItem: (cartId: number) => void;
+  isLoading: boolean;
+}
+
+const useDeleteCartItem = (): IUseDeleteCartItem => {
   const queryClient = useQueryClient();
+
+  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
   const { cartItemList, updateCartItemList } = useCartItemList();
 
-  const { mutate: deleteCartItem } = useMutation(
+  const { mutate: deleteCartItem, isLoading } = useMutation(
     (cartId: number) => cartService.fetchDeleteCartItem(cartId),
     {
       onMutate: () => {
@@ -30,10 +39,13 @@ const useDeleteCartItem = () => {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKey.cart]);
       },
+      onSettled: () => {
+        setCartSpinner(false);
+      },
     }
   );
 
-  return deleteCartItem;
+  return { deleteCartItem, isLoading };
 };
 
 export default useDeleteCartItem;
