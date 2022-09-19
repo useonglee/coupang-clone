@@ -11,6 +11,7 @@ interface IUseCartItemList {
 }
 
 const useCartItemList = (): IUseCartItemList => {
+  const accessToken = cookies.get("accessToken");
   const queryClient = useQueryClient();
   const [cartItemList, setCartItemList] = useState<ICartItemListData[]>([]);
 
@@ -18,7 +19,7 @@ const useCartItemList = (): IUseCartItemList => {
     [queryKey.cart],
     ({ signal }) => CartService.fetchCartList(signal),
     {
-      enabled: !!cookies.get("accessToken"),
+      enabled: !!accessToken,
       select: (data) => {
         const newCartItem: ICartItemListData[] = [];
 
@@ -42,10 +43,10 @@ const useCartItemList = (): IUseCartItemList => {
   };
 
   useEffect(() => {
-    if (data.length > 0) {
+    if (accessToken) {
       setCartItemList(data);
     }
-  }, [data]);
+  }, [accessToken, data]);
 
   return { cartItemList, updateCartItemList };
 };

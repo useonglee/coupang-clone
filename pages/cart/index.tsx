@@ -1,16 +1,23 @@
-import { useEffect, useMemo } from "react";
-import { CartTable, CartTotalPrice } from "@components/Cart";
+import { useMemo, useState } from "react";
+import { GetServerSideProps } from "next";
+import nextCookie from "next-cookies";
+import { CartTable, CartTotalPrice, CartNoItem } from "@components/Cart";
 import CartPageLayout from "./layout";
-import useAuth from "@hooks/useAuth";
-import cookies from "js-cookie";
 import { useRecoilValue } from "recoil";
 import {
   rocketPriceAtom,
   sellerPriceAtom,
 } from "@components/Cart/recoil/totalPrice";
+import useCartItemList from "@components/Cart/hooks/useCartItemList";
 
-const CartPage = () => {
-  const getAuthTokens = useAuth();
+interface ICartPageProps {
+  authToken: string;
+}
+
+const CartPage = ({ authToken }: ICartPageProps) => {
+  const [isUserLogin, setIsUserLogin] = useState<boolean>(!!authToken);
+
+  const { cartItemList } = useCartItemList();
 
   const rocketTotalPrice = useRecoilValue(rocketPriceAtom);
   const sellerTotalPrice = useRecoilValue(sellerPriceAtom);
@@ -21,24 +28,27 @@ const CartPage = () => {
     return totalPrice.toLocaleString();
   }, [rocketTotalPrice, sellerTotalPrice]);
 
-  useEffect(() => {
-    if (cookies.get("accessToken")) {
-      return;
-    }
-
-    getAuthTokens({ email: "useong0830@naver.com", password: "1234" });
-  }, []);
-
   return (
     <CartPageLayout>
       <section>
-        <CartTable />
+        <CartTable cartItemList={cartItemList} />
       </section>
-      {(rocketTotalPrice !== 0 || sellerTotalPrice !== 0) && (
+      {cartItemList.length > 0 ? (
         <CartTotalPrice totalPrice={cartItemTotalPrice} />
+      ) : (
+        <CartNoItem isUserLogin={isUserLogin} setIsUserLogin={setIsUserLogin} />
       )}
     </CartPageLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { accessToken } = nextCookie(context);
+  const authToken = JSON.parse(JSON.stringify(accessToken || ""));
+
+  return {
+    props: { authToken },
+  };
 };
 
 export default CartPage;

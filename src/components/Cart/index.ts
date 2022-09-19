@@ -1,6 +1,7 @@
 export { default as BundlePrice } from "./BundlePrice/BundlePrice";
 export { default as CartItem } from "./CartItem/CartItem";
 export { default as CartTable } from "./CartTable/CartTable";
+export { default as CartNoItem } from "./CartNoItem/CartNoItem";
 export { default as CartTotalPrice } from "./CartTotalPrice/CartTotalPrice";
 export { default as QuantityModifier } from "./QuantityModifier/QuantityModifier";
 export { default as RocketProduct } from "./RocketProduct/RocketProduct";

@@ -1,17 +1,18 @@
 import { useMemo } from "react";
 import { RocketProduct, SellerProduct } from "@components/Cart";
-import useCartItemList from "../hooks/useCartItemList";
-import * as Style from "./CartTable.style";
 import { ICartItemListData } from "../types/cart.type";
+import * as Style from "./CartTable.style";
 
-const CartTable = () => {
-  const { cartItemList } = useCartItemList();
+interface ICartTableProps {
+  cartItemList: ICartItemListData[];
+}
 
+const CartTable = ({ cartItemList }: ICartTableProps) => {
   const cart = useMemo(() => {
     const rocketProductList: ICartItemListData[] = [];
     const sellerProductList: ICartItemListData[] = [];
 
-    cartItemList.map((cartItem) => {
+    cartItemList?.map((cartItem) => {
       if (cartItem.product.rocketType === "fresh") {
         rocketProductList.push(cartItem);
       } else {
@@ -34,7 +35,7 @@ const CartTable = () => {
       </colgroup>
       <thead>
         <Style.CartTableHeaderRow>
-          <th scope="col">전체선택</th>
+          <th scope="col">{cartItemList.length > 0 && "전체선택"}</th>
           <th scope="colgroup" colSpan={2}>
             상품정보
           </th>
