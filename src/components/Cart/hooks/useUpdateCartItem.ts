@@ -6,12 +6,21 @@ import {
   IUpdateCartItemRequestBody,
 } from "../types/cart.type";
 import useCartItemList from "./useCartItemList";
+import { useSetRecoilState } from "recoil";
+import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
 
-const useUpdateCartItem = () => {
+interface IUseDeleteCartItem {
+  updateCartItem: (cartInfo: IUpdateCartItemRequestBody) => void;
+  isLoading: boolean;
+}
+
+const useUpdateCartItem = (): IUseDeleteCartItem => {
   const queryClient = useQueryClient();
+
+  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
   const { cartItemList, updateCartItemList } = useCartItemList();
 
-  const { mutate: updateCartItem } = useMutation(
+  const { mutate: updateCartItem, isLoading } = useMutation(
     ({ cartId, cartQuantity }: IUpdateCartItemRequestBody) =>
       cartService.fetchUpdateCartItem(cartId, cartQuantity),
     {
@@ -34,10 +43,13 @@ const useUpdateCartItem = () => {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKey.cart]);
       },
+      onSettled: () => {
+        setCartSpinner(false);
+      },
     }
   );
 
-  return updateCartItem;
+  return { updateCartItem, isLoading };
 };
 
 export default useUpdateCartItem;

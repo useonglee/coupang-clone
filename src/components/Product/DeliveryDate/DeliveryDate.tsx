@@ -1,5 +1,5 @@
 import { memo } from "react";
-import deliveryDateFormatter from "@utils/deliveryDateFormatter";
+import deliveryDateFormatter from "@components/Product/utils/deliveryDateFormatter";
 import * as Style from "./DeliveryDate.style";
 
 interface IDeliveryDate {

@@ -1,7 +1,13 @@
 import { useMemo, useState } from "react";
 import { GetServerSideProps } from "next";
 import nextCookie from "next-cookies";
-import { CartTable, CartTotalPrice, CartNoItem } from "@components/Cart";
+import {
+  CartTable,
+  CartTotalPrice,
+  CartNoItem,
+  Spinner,
+} from "@components/Cart";
+import { CustomSuspense } from "@components/Common";
 import CartPageLayout from "./layout";
 import { useRecoilValue } from "recoil";
 import {
@@ -29,16 +35,21 @@ const CartPage = ({ authToken }: ICartPageProps) => {
   }, [rocketTotalPrice, sellerTotalPrice]);
 
   return (
-    <CartPageLayout>
-      <section>
-        <CartTable cartItemList={cartItemList} />
-      </section>
-      {cartItemList.length > 0 ? (
-        <CartTotalPrice totalPrice={cartItemTotalPrice} />
-      ) : (
-        <CartNoItem isUserLogin={isUserLogin} setIsUserLogin={setIsUserLogin} />
-      )}
-    </CartPageLayout>
+    <CustomSuspense fallback={<Spinner.Beat />}>
+      <CartPageLayout>
+        <section>
+          <CartTable cartItemList={cartItemList} />
+        </section>
+        {cartItemList.length > 0 ? (
+          <CartTotalPrice totalPrice={cartItemTotalPrice} />
+        ) : (
+          <CartNoItem
+            isUserLogin={isUserLogin}
+            setIsUserLogin={setIsUserLogin}
+          />
+        )}
+      </CartPageLayout>
+    </CustomSuspense>
   );
 };
 

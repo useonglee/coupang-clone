@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import Image from "next/image";
 import { DeliveryDate, Badge } from "@components/Product";
 import QuantityModifier from "../QuantityModifier/QuantityModifier";
 import useDeleteCartItem from "../hooks/useDeleteCartItem";
 import * as Style from "./CartItem.style";
 import { VscChromeClose } from "react-icons/vsc";
+import { useSetRecoilState } from "recoil";
+import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
 
 interface ICartItemProps {
   cartId: number;
@@ -32,11 +35,17 @@ const CartItem = ({
   count,
   isFirstItem,
 }: ICartItemProps) => {
-  const deleteCartItem = useDeleteCartItem();
+  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
+
+  const { deleteCartItem, isLoading } = useDeleteCartItem();
 
   const handleDeleteCartItemClick = (cartId: number) => {
     deleteCartItem(cartId);
   };
+
+  useEffect(() => {
+    setCartSpinner(isLoading);
+  }, [isLoading]);
 
   return (
     <Style.CartItemContainer>
