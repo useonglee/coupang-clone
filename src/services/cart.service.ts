@@ -21,6 +21,12 @@ class CartService {
 
     return data;
   }
+
+  async fetchResetCartItem() {
+    const { data } = await axiosInstance.post("/cart/reset");
+
+    return data;
+  }
 }
 
 export default new CartService();
