@@ -6,3 +6,4 @@ export { default as CartTotalPrice } from "./CartTotalPrice/CartTotalPrice";
 export { default as QuantityModifier } from "./QuantityModifier/QuantityModifier";
 export { default as RocketProduct } from "./RocketProduct/RocketProduct";
 export { default as SellerProduct } from "./SellerProduct/SellerProduct";
+export { default as Spinner } from "./Spinner/Spinner";
