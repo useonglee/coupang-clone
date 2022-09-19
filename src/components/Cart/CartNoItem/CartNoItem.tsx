@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
 import useAuth from "@hooks/useAuth";
 import * as Style from "./CartNoItem.style";
-import queryKey from "../constants/queryKey";
 
 interface ICartNoItemProps {
   isUserLogin: boolean;
@@ -10,7 +9,7 @@ interface ICartNoItemProps {
 }
 
 const CartNoItem = ({ isUserLogin, setIsUserLogin }: ICartNoItemProps) => {
-  const getAuthTokens = useAuth(queryKey.cart);
+  const getAuthTokens = useAuth();
 
   const handleLoginClick = () => {
     getAuthTokens({ email: "useong0830@naver.com", password: "1234" });
