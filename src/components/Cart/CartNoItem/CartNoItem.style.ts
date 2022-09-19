@@ -19,6 +19,21 @@ export const CartNoItemContainer = styled.div`
   }}
 `;
 
+export const CartItemResetButton = styled.button`
+  ${({ theme }) => {
+    const { primary } = theme.color;
+
+    return css`
+      width: 10rem;
+      height: 2.3rem;
+      margin-top: 1rem;
+      color: ${primary};
+      border: 1px solid ${primary};
+      border-radius: 0.2rem;
+    `;
+  }}
+`;
+
 export const TodayProduct = styled.div`
   height: 18.5rem;
   background: url("https://img1a.coupangcdn.com/image/static/product/cart/img_nonebasket4.jpg");
