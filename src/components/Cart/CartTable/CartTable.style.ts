@@ -19,12 +19,19 @@ export const CartTableHeaderRow = styled.tr`
       border-top: 1px solid ${gray["DD"]};
       border-bottom: 1px solid ${gray["DD"]};
       background-color: ${gray["FA"]};
-
-      & > th:nth-of-type(1) {
-        text-align: left;
-      }
     `;
   }}
+`;
+
+export const AllCheckItemTh = styled.th`
+  width: 10.5rem;
+  padding: 0 1rem;
+  text-align: left;
+
+  & > label {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
 `;
 
 export const CartBundleTitle = styled.td`
