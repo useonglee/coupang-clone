@@ -11,8 +11,17 @@ export const CartItemContainer = styled.tr`
   }}
 `;
 
-export const CartItemImageWrapper = styled.div`
-  padding: 1rem 0;
+export const CartItemCheckboxWrapper = styled.td`
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const CartItemImageWrapper = styled.td`
+  vertical-align: middle;
+
+  & > div {
+    padding: 1rem 0;
+  }
 `;
 
 export const CartItemInfoWrapper = styled.td`
