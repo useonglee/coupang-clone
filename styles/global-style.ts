@@ -146,11 +146,6 @@ const globalStyle = css`
     outline: none;
   }
   /* input 기본 스타일 초기화 */
-  input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
   input:focus {
     outline: none;
   }
