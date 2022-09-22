@@ -14,18 +14,18 @@ const Checkbox = (props: ICheckboxProps) => {
 
   const handleCheckedItemChange = useCallback(
     ({ target }: ChangeEvent<HTMLInputElement>) => {
-      if (context) {
-        const { checkedAllItem, setCheckedAllItem } = context;
+      if (!context) return;
 
-        if (target.checked) {
-          setCheckedAllItem([...checkedAllItem, value]);
-        } else {
-          const filteredCheckedItemList = checkedAllItem.filter(
-            (item) => item !== value
-          );
+      const { checkedAllItem, setCheckedAllItem } = context;
 
-          setCheckedAllItem(filteredCheckedItemList);
-        }
+      if (target.checked) {
+        setCheckedAllItem([...checkedAllItem, value]);
+      } else {
+        const filteredCheckedItemList = checkedAllItem.filter(
+          (item) => item !== value
+        );
+
+        setCheckedAllItem(filteredCheckedItemList);
       }
     },
     [context]
