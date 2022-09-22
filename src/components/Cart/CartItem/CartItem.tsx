@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
+import { Checkbox } from "@components/Common";
 import { DeliveryDate, Badge } from "@components/Product";
 import QuantityModifier from "../QuantityModifier/QuantityModifier";
 import useDeleteCartItem from "../hooks/useDeleteCartItem";
@@ -49,17 +50,19 @@ const CartItem = ({
 
   return (
     <Style.CartItemContainer>
-      <td>체크박스</td>
-      <td>
-        <Style.CartItemImageWrapper>
+      <Style.CartItemCheckboxWrapper>
+        <Checkbox value={cartId} />
+      </Style.CartItemCheckboxWrapper>
+      <Style.CartItemImageWrapper>
+        <div>
           <Image
             src={imageUrl}
             alt={`${title} 상품 이미지`}
             width={78}
             height={78}
           />
-        </Style.CartItemImageWrapper>
-      </td>
+        </div>
+      </Style.CartItemImageWrapper>
       <Style.CartItemInfoWrapper>
         <Style.CartItemTitle>
           <p>{title}</p>
