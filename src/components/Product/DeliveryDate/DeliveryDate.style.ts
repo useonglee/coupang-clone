@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-<<<<<<< HEAD
 
 export const DeliveryDateStyle = styled.p<{ isAssured?: boolean }>`
   ${({ theme, isAssured }) => {
@@ -24,18 +23,6 @@ export const DeliveryAssuredText = styled.span`
       color: ${gray["88"]};
       letter-spacing: normal;
       font-size: 1.2rem;
-=======
-import theme from "@styles/theme";
-
-export const DeliveryDateStyle = styled.p<{ isAssured?: boolean }>`
-  ${({ isAssured }) => {
-    const { secondary, black } = theme.color;
-
-    return css`
-      padding-top: 0.6rem;
-      color: ${isAssured ? secondary : black};
-      font-size: 1.4rem;
->>>>>>> 3464d01 (#2 feat: 상품 배송 도착 UI 컴포넌트 구현)
     `;
   }}
 `;
