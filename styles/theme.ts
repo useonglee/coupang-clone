@@ -22,6 +22,14 @@ const color = {
     light: "rgb(247, 247, 247)",
   },
   emphasis: "#E52528",
+  grayCC: "#CCCCCC",
+  lightGray: "#DDDDDD",
+  basicGray: "#555555",
+  darkGray: "#888888",
+  priceColor: "#AE0000",
+  boxShadow: "1px 1px 10px rgba(0, 0, 0, 0.2)",
+  black300: "#333333",
+  starRating: "#FF9603",
 };
 
 const theme: Theme = {

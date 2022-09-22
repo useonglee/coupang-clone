@@ -13,6 +13,7 @@ declare module "@emotion/react" {
       boxShadow: string;
       black: string;
       black300: string;
+      starRating: string;
     };
   }
 }
