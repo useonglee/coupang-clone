@@ -58,10 +58,12 @@ const CartTable = ({ cartItemList }: ICartTableProps) => {
         </thead>
         <RocketProduct cartItemList={cart.rocketProductList} />
         <SellerProduct cartItemList={cart.sellerProductList} />
-        <OrderFoot
-          cartIdList={cartIdList()}
-          cartItemCount={cartItemList?.length}
-        />
+        {cartItemList.length > 0 && (
+          <OrderFoot
+            cartIdList={cartIdList()}
+            cartItemCount={cartItemList?.length}
+          />
+        )}
       </Checkbox.Group>
     </Style.CartTableContainer>
   );
