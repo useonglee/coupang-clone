@@ -24,6 +24,16 @@ declare module "@emotion/react" {
         light: string;
       };
       emphasis: string;
+      grayCC: string;
+      grayFA: string;
+      grayEE: string;
+      lightGray: string;
+      basicGray: string;
+      darkGray: string;
+      priceColor: string;
+      boxShadow: string;
+      black300: string;
+      starRating: string;
     };
   }
 }
