@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
-import { Checkbox } from "@components/Common";
+import { Checkbox } from "@components/@shared";
 import { DeliveryDate, Badge } from "@components/Product";
 import QuantityModifier from "../QuantityModifier/QuantityModifier";
 import useDeleteCartItem from "../hooks/useDeleteCartItem";

@@ -7,7 +7,7 @@ import {
   CartNoItem,
   Spinner,
 } from "@components/Cart";
-import { CustomSuspense } from "@components/Common";
+import { CustomSuspense } from "@components/@shared";
 import CartPageLayout from "./layout";
 import { useRecoilValue } from "recoil";
 import {

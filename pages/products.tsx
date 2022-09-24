@@ -6,7 +6,7 @@ import {
   CustomSuspense,
   Pagination,
   Spinner,
-} from "@components/Common";
+} from "@components/@shared";
 import { ProductList, SearchSortingBar } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
