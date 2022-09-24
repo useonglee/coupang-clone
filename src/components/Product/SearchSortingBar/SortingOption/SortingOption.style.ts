@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import theme from "@styles/theme";
-import { Radio } from "@components/Common";
+import { Radio } from "@components/@shared";
 
 // react icon
 import { GoCheck } from "react-icons/go";
