@@ -39,7 +39,7 @@ const generateShape = (shape?: string) => {
   switch (shape) {
     case "round":
       return css`
-        border-radius: 2px;
+        border-radius: 0.4rem;
       `;
     case "circle":
       return css`
