@@ -1,3 +1,4 @@
+export { default as Button } from "./Button/Button";
 export { default as Checkbox } from "./Checkbox";
 export { default as CustomSuspense } from "./CustomSuspense";
 export { default as Layout } from "./Layout/Layout";
