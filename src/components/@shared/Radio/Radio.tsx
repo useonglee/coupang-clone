@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react";
-import * as Style from "./Radio.style";
 
 interface IRadioProps {
   id: string;
@@ -12,7 +11,7 @@ interface IRadioProps {
 const Radio = ({ id, name, value, checked, onChange }: IRadioProps) => {
   return (
     <>
-      <Style.RadioContainer
+      <input
         type="radio"
         id={id}
         name={name}
