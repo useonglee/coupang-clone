@@ -1,9 +1,16 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Layout } from "@components/@shared";
+import useOrdersheet from "@hooks/checkout/useOrderSheet";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const CheckoutPage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const orderSheet = useOrdersheet(id as string);
+
   return (
     <Layout title="쿠팡! - COLOR OF YOUR DAYS!">
       <HeaderLogo>
