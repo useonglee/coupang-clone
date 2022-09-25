@@ -39,7 +39,7 @@ const generateShape = (shape?: string) => {
   switch (shape) {
     case "round":
       return css`
-        border-radius: 2px;
+        border-radius: 0.4rem;
       `;
     case "circle":
       return css`
@@ -62,11 +62,15 @@ const generateSize = (size?: string) => {
       return css`
         width: 22rem;
         height: 6.3rem;
+        font-size: 2.2rem;
+        font-weight: 700;
       `;
     case "large":
       return css`
         width: 26rem;
         height: 6rem;
+        font-size: 2.2rem;
+        font-weight: 700;
       `;
     default:
       return;

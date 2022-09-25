@@ -4,7 +4,7 @@ import * as Style from "./QuantityModifier.style";
 import { HiOutlinePlus, HiOutlineMinus } from "react-icons/hi";
 import useDebounce from "@hooks/useDebounce";
 import { useSetRecoilState } from "recoil";
-import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
+import { spinnerAtom } from "@recoil/spinner";
 
 interface IQuantityModifierProps {
   cartId: number;
@@ -12,7 +12,7 @@ interface IQuantityModifierProps {
 }
 
 const QuantityModifier = ({ cartId, cartQuantity }: IQuantityModifierProps) => {
-  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
+  const setCartSpinner = useSetRecoilState(spinnerAtom);
   const { updateCartItem, isLoading } = useUpdateCartItem();
   const DEBOUNCE_WAIT = 200;
 

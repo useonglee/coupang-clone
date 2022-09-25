@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import useShallowRouter from "@hooks/useShallowRouter";
 import { IPaginationAction } from "@hooks/usePaginationReducer";
 import * as Style from "./SortingOption.style";
+import { Radio } from "@components/@shared";
 
 interface ISortingOption {
   id: string;
@@ -63,7 +64,7 @@ const SortingOption = ({ sorter, dispatch }: ISortingOptionProps) => {
       {SORT_OPTION.map(({ id, name, value, help }: ISortingOption) => (
         <Style.SortingOptionWrapper key={id}>
           {sorter === id && <Style.CheckedIcon />}
-          <Style.Sorter
+          <Radio
             id={id}
             name={name}
             value={value}
