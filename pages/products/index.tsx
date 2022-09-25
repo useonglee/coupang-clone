@@ -72,7 +72,7 @@ const ProductListPage = ({ queries }: IProductListPageProps) => {
   }, [dispatch, router]);
 
   return (
-    <Layout isScrolling={isScrolling}>
+    <Layout title="쿠팡!">
       <SearchSortingBar paginationState={paginationState} dispatch={dispatch} />
       <CustomSuspense fallback={<Spinner />}>
         <ProductList productListData={productListData} />
