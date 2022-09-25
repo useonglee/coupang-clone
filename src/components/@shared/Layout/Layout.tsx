@@ -3,15 +3,13 @@ import Head from "next/head";
 import { Spinner } from "@components/Cart";
 import { useRecoilValue } from "recoil";
 import { spinnerAtom } from "@recoil/spinner";
-import * as Style from "./Layout.style";
 
 interface ILayoutProps {
   title: string;
-  isScrolling?: boolean;
   children: ReactNode;
 }
 
-const Layout = ({ title, isScrolling, children }: ILayoutProps) => {
+const Layout = ({ title, children }: ILayoutProps) => {
   const cartSpinner = useRecoilValue(spinnerAtom);
 
   return (
@@ -19,7 +17,7 @@ const Layout = ({ title, isScrolling, children }: ILayoutProps) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <Style.LayoutContainer>{children}</Style.LayoutContainer>
+      <main>{children}</main>
       {cartSpinner && <Spinner.Clip />}
     </>
   );
