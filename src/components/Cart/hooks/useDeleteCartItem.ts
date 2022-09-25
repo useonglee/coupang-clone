@@ -4,7 +4,7 @@ import queryKey from "../constants/queryKey";
 import { ICartItemListData } from "../types/cart.type";
 import useCartItemList from "./useCartItemList";
 import { useSetRecoilState } from "recoil";
-import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
+import { spinnerAtom } from "@recoil/spinner";
 
 interface IUseDeleteCartItem {
   deleteCartItem: (cartId: number) => void;
@@ -14,7 +14,7 @@ interface IUseDeleteCartItem {
 const useDeleteCartItem = (): IUseDeleteCartItem => {
   const queryClient = useQueryClient();
 
-  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
+  const setCartSpinner = useSetRecoilState(spinnerAtom);
   const { cartItemList, updateCartItemList } = useCartItemList();
 
   const { mutate: deleteCartItem, isLoading } = useMutation(

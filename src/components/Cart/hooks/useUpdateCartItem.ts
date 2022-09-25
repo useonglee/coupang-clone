@@ -7,7 +7,7 @@ import {
 } from "../types/cart.type";
 import useCartItemList from "./useCartItemList";
 import { useSetRecoilState } from "recoil";
-import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
+import { spinnerAtom } from "@recoil/spinner";
 
 interface IUseDeleteCartItem {
   updateCartItem: (cartInfo: IUpdateCartItemRequestBody) => void;
@@ -17,7 +17,7 @@ interface IUseDeleteCartItem {
 const useUpdateCartItem = (): IUseDeleteCartItem => {
   const queryClient = useQueryClient();
 
-  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
+  const setCartSpinner = useSetRecoilState(spinnerAtom);
   const { cartItemList, updateCartItemList } = useCartItemList();
 
   const { mutate: updateCartItem, isLoading } = useMutation(
