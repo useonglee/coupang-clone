@@ -10,6 +10,7 @@ declare module "@emotion/react" {
       gray: {
         "33": string;
         "55": string;
+        "77": string;
         "8A": string;
         "88": string;
         CC: string;
