@@ -1,20 +1,26 @@
+import { ReactNode } from "react";
 import Head from "next/head";
-import { PropsWithChildren } from "react";
+import { Spinner } from "@components/Cart";
+import { useRecoilValue } from "recoil";
+import { spinnerAtom } from "@recoil/spinner";
 import * as Style from "./Layout.style";
 
 interface ILayoutProps {
-  isScrolling: boolean;
+  title: string;
+  isScrolling?: boolean;
+  children: ReactNode;
 }
 
-const Layout = ({ isScrolling, children }: PropsWithChildren<ILayoutProps>) => {
+const Layout = ({ title, isScrolling, children }: ILayoutProps) => {
+  const cartSpinner = useRecoilValue(spinnerAtom);
+
   return (
     <>
       <Head>
-        <title>쿠팡!</title>
+        <title>{title}</title>
       </Head>
-      <Style.LayoutContainer isScrolling={isScrolling}>
-        {children}
-      </Style.LayoutContainer>
+      <Style.LayoutContainer>{children}</Style.LayoutContainer>
+      {cartSpinner && <Spinner.Clip />}
     </>
   );
 };

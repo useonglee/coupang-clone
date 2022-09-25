@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
-export const LayoutContainer = styled.section<{ isScrolling: boolean }>`
-  padding-bottom: 10rem;
+export const LayoutContainer = styled.main`
+  width: 89.8rem;
+  margin: 0 auto;
 `;
