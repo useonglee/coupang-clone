@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import nextCookie from "next-cookies";
 import {
   CartTable,
@@ -7,14 +8,10 @@ import {
   CartNoItem,
   Spinner,
 } from "@components/Cart";
-import { CustomSuspense } from "@components/@shared";
-import CartPageLayout from "./layout";
-import { useRecoilValue } from "recoil";
-import {
-  rocketPriceAtom,
-  sellerPriceAtom,
-} from "@components/Cart/recoil/totalPrice";
+import { Button, CustomSuspense, Layout } from "@components/@shared";
 import useCartItemList from "@components/Cart/hooks/useCartItemList";
+import { useRecoilValue } from "recoil";
+import { rocketPriceAtom, sellerPriceAtom } from "@recoil/totalPrice";
 
 interface ICartPageProps {
   authToken: string;
@@ -36,7 +33,7 @@ const CartPage = ({ authToken }: ICartPageProps) => {
 
   return (
     <CustomSuspense fallback={<Spinner.Beat />}>
-      <CartPageLayout>
+      <Layout title="쿠팡! | 장바구니">
         <section>
           <CartTable cartItemList={cartItemList} />
         </section>
@@ -48,7 +45,23 @@ const CartPage = ({ authToken }: ICartPageProps) => {
             setIsUserLogin={setIsUserLogin}
           />
         )}
-      </CartPageLayout>
+        <div>
+          <Link href="https://www.coupang.com/">
+            <a>
+              <Button variant="outlined" size="medium" shape="round">
+                계속 쇼핑하기
+              </Button>
+            </a>
+          </Link>
+          <Link href={`cart/checkout/${1}`}>
+            <a>
+              <Button variant="primary" size="medium" shape="round">
+                구매하기
+              </Button>
+            </a>
+          </Link>
+        </div>
+      </Layout>
     </CustomSuspense>
   );
 };
