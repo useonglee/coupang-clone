@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import useDeleteCartItem from "@components/Cart/hooks/useDeleteCartItem";
-import { Checkbox } from "@components/Common";
-import { CheckBoxContext } from "@components/Common/Checkbox/CheckboxGroup";
+import { Checkbox } from "@components/@shared";
+import { CheckBoxContext } from "@components/@shared/Checkbox/CheckboxGroup";
 import * as Style from "./OrderFoot.style";
 import { useSetRecoilState } from "recoil";
-import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
+import { spinnerAtom } from "@recoil/spinner";
 
 interface IOrderFootProps {
   cartIdList: number[];
@@ -12,7 +12,7 @@ interface IOrderFootProps {
 }
 
 const OrderFoot = ({ cartIdList, cartItemCount }: IOrderFootProps) => {
-  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
+  const setCartSpinner = useSetRecoilState(spinnerAtom);
   const context = useContext(CheckBoxContext);
 
   const { deleteCartItem, isLoading } = useDeleteCartItem();

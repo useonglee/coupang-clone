@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Checkbox } from "@components/Common";
+import { Checkbox } from "@components/@shared";
 import { RocketProduct, SellerProduct } from "@components/Cart";
 import OrderFoot from "./OrderFoot/OrderFoot";
 import { ICartItemListData } from "../types/cart.type";

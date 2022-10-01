@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import Image from "next/image";
-import { Checkbox } from "@components/Common";
+import { Checkbox } from "@components/@shared";
 import { DeliveryDate, Badge } from "@components/Product";
 import QuantityModifier from "../QuantityModifier/QuantityModifier";
 import useDeleteCartItem from "../hooks/useDeleteCartItem";
 import * as Style from "./CartItem.style";
 import { VscChromeClose } from "react-icons/vsc";
 import { useSetRecoilState } from "recoil";
-import { cartSpinnerAtom } from "@components/Cart/recoil/spinner";
+import { spinnerAtom } from "@recoil/spinner";
 
 interface ICartItemProps {
   cartId: number;
@@ -36,7 +36,7 @@ const CartItem = ({
   count,
   isFirstItem,
 }: ICartItemProps) => {
-  const setCartSpinner = useSetRecoilState(cartSpinnerAtom);
+  const setCartSpinner = useSetRecoilState(spinnerAtom);
 
   const { deleteCartItem, isLoading } = useDeleteCartItem();
 

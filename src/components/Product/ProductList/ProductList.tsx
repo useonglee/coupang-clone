@@ -1,4 +1,3 @@
-import { memo } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { IProductList } from "@/types/products";
 import * as Style from "./ProductList.style";
@@ -7,7 +6,7 @@ interface IProductListProps {
   productListData: IProductList;
 }
 
-const ProductList = memo(({ productListData }: IProductListProps) => {
+const ProductList = ({ productListData }: IProductListProps) => {
   return (
     <Style.ProductListContainer>
       {productListData?.map((product) => (
@@ -15,6 +14,6 @@ const ProductList = memo(({ productListData }: IProductListProps) => {
       ))}
     </Style.ProductListContainer>
   );
-});
+};
 
 export default ProductList;

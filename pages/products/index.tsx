@@ -6,7 +6,7 @@ import {
   CustomSuspense,
   Pagination,
   Spinner,
-} from "@components/Common";
+} from "@components/@shared";
 import { ProductList, SearchSortingBar } from "@components/Product";
 import usePaginationReducer from "@hooks/usePaginationReducer";
 import useProductList from "@hooks/useProductList";
@@ -72,7 +72,7 @@ const ProductListPage = ({ queries }: IProductListPageProps) => {
   }, [dispatch, router]);
 
   return (
-    <Layout isScrolling={isScrolling}>
+    <Layout title="쿠팡!">
       <SearchSortingBar paginationState={paginationState} dispatch={dispatch} />
       <CustomSuspense fallback={<Spinner />}>
         <ProductList productListData={productListData} />

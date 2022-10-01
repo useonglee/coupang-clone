@@ -15,6 +15,8 @@ const nextConfig = {
       "thumbnail9.coupangcdn.com",
       "thumbnail10.coupangcdn.com",
       "image6.coupangcdn.com",
+      "image7.coupangcdn.com",
+      "image8.coupangcdn.com",
       "img1a.coupangcdn.com",
     ],
   },
@@ -22,7 +24,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/products",
+        destination: "/cart",
         permanent: true,
       },
     ];

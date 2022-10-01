@@ -1,6 +1,6 @@
 import { Dispatch, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
-import { Select } from "@components/Common";
+import { Select } from "@components/@shared";
 import SortingOption from "./SortingOption/SortingOption";
 import { IPaginationState } from "@/types/pagination";
 import { IPaginationAction } from "@hooks/usePaginationReducer";

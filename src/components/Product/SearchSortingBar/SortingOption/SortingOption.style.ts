@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import theme from "@styles/theme";
-import { Radio } from "@components/Common";
 
 // react icon
 import { GoCheck } from "react-icons/go";
@@ -29,13 +28,15 @@ export const SortingOptionWrapper = styled.li`
     }
   }
 
+  & > input[type="radio"] {
+    display: none;
+  }
+
   & > input[type="radio"]:checked + label {
     color: ${theme.color.primary};
     font-weight: bold;
   }
 `;
-
-export const Sorter = styled(Radio)``;
 
 export const CheckedIcon = styled(GoCheck)`
   margin-top: -0.4rem;
